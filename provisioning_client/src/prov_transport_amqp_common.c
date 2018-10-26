@@ -968,6 +968,14 @@ void cleanup_amqp_data(PROV_TRANSPORT_AMQP_INFO* amqp_info)
     free(amqp_info->private_key);
     free(amqp_info->sas_token);
     free(amqp_info->payload_data);
+    if (amqp_info->transport_io != NULL)
+    {
+        xio_destroy(amqp_info->transport_io);
+    }
+    if (amqp_info->underlying_io != NULL)
+    {
+        xio_destroy(amqp_info->underlying_io);
+    }
     free(amqp_info);
 }
 

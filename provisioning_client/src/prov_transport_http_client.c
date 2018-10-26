@@ -509,6 +509,10 @@ static void free_allocated_data(PROV_TRANSPORT_HTTP_INFO* http_info)
     BUFFER_delete(http_info->ek);
     BUFFER_delete(http_info->srk);
     BUFFER_delete(http_info->nonce);
+    if (http_info->http_client != NULL)
+    {
+        uhttp_client_destroy(http_info->http_client);
+    }
     free(http_info);
 }
 

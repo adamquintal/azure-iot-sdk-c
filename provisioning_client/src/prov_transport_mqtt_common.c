@@ -647,6 +647,10 @@ void cleanup_mqtt_data(PROV_TRANSPORT_MQTT_INFO* mqtt_info)
     free(mqtt_info->private_key);
     free(mqtt_info->sas_token);
     free(mqtt_info->payload_data);
+    if (mqtt_info->transport_io != NULL)
+    {
+        xio_destroy(mqtt_info->transport_io);
+    }
     free(mqtt_info);
 }
 
